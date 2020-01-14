@@ -1,0 +1,50 @@
+.walletImg {
+    width: 50px;
+    height: 50px;
+    padding: 20px;
+}
+
+.addImg {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    margin-top: 50px;
+    margin-left: 25vw;
+    box-shadow: 5px 5px 15px 5px lightgrey;
+    height: 400px;
+    width: 700px;
+}
+
+.addButton {
+    width: 80px;
+    height: 49px;
+    margin-top: 8px;
+}
+
+.addButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.logoutButton {
+    width: 80px;
+    height: 49px;
+    margin-top: 80px;
+    margin-left: 206vh;
+}
+
+.logoutButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

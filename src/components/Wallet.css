@@ -1,0 +1,12 @@
+.cat {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 20vw;
+    box-shadow: 5px 5px 15px 5px lightgrey;
+    height: 200px;
+    width: 1000px;
+}
+
+h1 {
+    margin-left: 30px;
+}
