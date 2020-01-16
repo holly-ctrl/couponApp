@@ -69,6 +69,7 @@ class Wallet extends Component {
         axios
             .delete(`/api/deleteCoupon/${id}`)
             .then((res) => {
+                // console.log(res.data)
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
                 const household = res.data.filter(coupon => coupon.category_id === 2)
                 const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
@@ -95,6 +96,8 @@ class Wallet extends Component {
                     <h1>Grocery</h1>
                     {this.state.grocery.map((coupons) => (
                         <CouponListItem
+                        key={coupons.id}
+                        id={coupons.id}
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
@@ -105,6 +108,8 @@ class Wallet extends Component {
                     <h1>Household</h1>
                     {this.state.household.map((coupons) => (
                         <CouponListItem
+                        key={coupons.id}
+                        id={coupons.id}
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
@@ -115,6 +120,8 @@ class Wallet extends Component {
                     <h1>Pharmacy</h1>
                     {this.state.pharmacy.map((coupons) => (
                         <CouponListItem
+                        key={coupons.id}
+                        id={coupons.id}
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
@@ -125,6 +132,8 @@ class Wallet extends Component {
                     <h1>Personal</h1>
                     {this.state.personal.map((coupons) => (
                         <CouponListItem
+                        key={coupons.id}
+                        id={coupons.id}
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
@@ -135,6 +144,8 @@ class Wallet extends Component {
                     <h1>Pets</h1>
                     {this.state.pets.map((coupons) => (
                         <CouponListItem
+                        key={coupons.id}
+                        id={coupons.id}
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
