@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import Popup from './Popup'
 import './Welcome.css'
 
 class Welcome extends Component {
@@ -11,8 +12,24 @@ class Welcome extends Component {
         this.state = {
             product: '',
             expirationDate: '',
-            image: ''
+            image: '',
+            showPopup: false
         }
+
+        this.togglePopup = this.togglePopup.bind(this)
+        this.onAddCouponClick = this.onAddCouponClick.bind(this)
+    }
+
+    onProductChange(e) {
+        this.setState({
+            product: e.target.value
+        })
+    }
+
+    onExpirationDateChange(e) {
+        this.setState({
+            expirationDate: e.target.value
+        })
     }
 
     logout() {
@@ -26,6 +43,23 @@ class Welcome extends Component {
         })
     }
 
+    togglePopup() {
+        this.setState({
+            showPopup: !this.state.showPopup
+        })
+    }
+
+    onAddCouponClick(category) {
+        axios
+            .post('/api/addCoupon', {
+                product: this.state.product,
+                expiration_date: this.state.expirationDate,
+                category_id: category
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
     render() {
         return (
             <div className='container'>
@@ -34,12 +68,13 @@ class Welcome extends Component {
                 </nav>
                 <div>
                     <form>
-                        <input placeholder='Product' ></input>
-                        <input placeholder='Expiration Date'></input>
-                        <input placeholder='Image'></input>
-                        <button className='addButton'>Add</button>
+                        {/* <input placeholder='Image'></input> */}
+                        Product Name:<input value={this.product} onChange={e => this.onProductChange(e)}  ></input>
+                        Expiration Date: <input type='date' value={this.expiration_date} onChange={e => this.onExpirationDateChange(e)} placeholder='Expiration Date'></input>
+                        <button onClick={ () => {this.togglePopup()}} className='addButton'>Add</button>
                     </form>
                 </div>
+                {this.state.showPopup && <Popup closePopup={this.togglePopup} onAddCouponClick={this.onAddCouponClick} />}
                 <button className='logoutButton' onClick={() => this.logout()}>Logout</button>
             </div>
         )

@@ -20,6 +20,10 @@ app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.delete('/auth/logout', authCtrl.logout)
 
+app.post('/api/addCoupon', ctrl.addCoupon)
+app.get('/api/getAllCoupons', ctrl.getAllCoupons)
+app.delete('/api/deleteCoupon/:id', ctrl.deleteCoupon)
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
     app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))
