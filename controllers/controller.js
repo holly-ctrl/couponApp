@@ -21,5 +21,14 @@ module.exports = {
         const db = req.app.get('db')
         db.delete_coupon(id)
         .then(data => res.status(200).send(data))
+    },
+    editCoupon: (req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+        const{product, expiration_date} = req.body
+
+        db.edit_coupon([ product, expiration_date, +id])
+        .then(data => 
+            res.status(200).send(data))
     }
 }

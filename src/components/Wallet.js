@@ -17,6 +17,7 @@ class Wallet extends Component {
         }
 
         this.deleteCoupon = this.deleteCoupon.bind(this)
+        this.updateCoupon = this.updateCoupon.bind(this)
     }
 
     componentDidMount() {
@@ -85,6 +86,27 @@ class Wallet extends Component {
             })
     }
 
+    updateCoupon(id, product, expiration_date) {
+        axios
+            .put(`/api/editCoupon/${id}`, {
+                product,
+                expiration_date
+            })
+            .then(res => {
+                const grocery = res.data.filter(coupon => coupon.category_id === 1)
+                const household = res.data.filter(coupon => coupon.category_id === 2)
+                const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
+                const personal = res.data.filter(coupon => coupon.category_id === 4)
+                const pets = res.data.filter(coupon => coupon.category_id === 5)
+                this.setState({
+                    grocery,
+                    household,
+                    pharmacy,
+                    personal,
+                    pets
+                })
+            })
+    }
     render() {
         console.log(this.state)
         return(
@@ -101,6 +123,9 @@ class Wallet extends Component {
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
+                        updateCoupon={this.updateCoupon}
+                        handleEditProductChange={this.handleEditProductChange}
+                        handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
                 </div>
@@ -113,6 +138,9 @@ class Wallet extends Component {
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
+                        updateCoupon={this.updateCoupon}
+                        handleEditProductChange={this.handleEditProductChange}
+                        handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
                 </div>
@@ -125,6 +153,9 @@ class Wallet extends Component {
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
+                        updateCoupon={this.updateCoupon}
+                        handleEditProductChange={this.handleEditProductChange}
+                        handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
                 </div>
@@ -137,6 +168,9 @@ class Wallet extends Component {
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
+                        updateCoupon={this.updateCoupon}
+                        handleEditProductChange={this.handleEditProductChange}
+                        handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
                 </div>
@@ -149,6 +183,9 @@ class Wallet extends Component {
                         product={coupons.product}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
+                        updateCoupon={this.updateCoupon}
+                        handleEditProductChange={this.handleEditProductChange}
+                        handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
                 </div>

@@ -23,6 +23,7 @@ app.delete('/auth/logout', authCtrl.logout)
 app.post('/api/addCoupon', ctrl.addCoupon)
 app.get('/api/getAllCoupons', ctrl.getAllCoupons)
 app.delete('/api/deleteCoupon/:id', ctrl.deleteCoupon)
+app.put('/api/editCoupon/:id', ctrl.editCoupon)
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
