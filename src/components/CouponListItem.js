@@ -15,7 +15,7 @@ class CouponListItem extends Component {
     componentDidMount() {
         this.setState({
             product: this.props.product,
-            expiration_date: this.props.expiration_date
+            expiration_date: this.props.expiration_date,
         })
     }
 
@@ -49,7 +49,7 @@ class CouponListItem extends Component {
                     <button onClick={() => {this.editToggle()}} >Edit</button> <button onClick={() => this.props.deleteCoupon(this.props.id)}>Delete</button>
                 </div>
                 :
-                <div>
+                <div className='editCoupon'>
                     product: <input value={this.state.product} onChange={e => this.handleEditProductChange(e)}/>
                     Expires on: <input type='date' value={this.state.expiration_date} onChange={e => this.handleEditExpirationDateChange(e)}/> 
                     <button onClick={() => {

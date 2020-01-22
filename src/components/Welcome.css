@@ -16,7 +16,7 @@ nav {
     justify-content: flex-end;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;

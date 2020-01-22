@@ -24,7 +24,6 @@ class Wallet extends Component {
         axios
             .get('/api/getAllCoupons')
             .then(res => {
-                console.log(res.data)
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
                 const household = res.data.filter(coupon => coupon.category_id ===2)
                 const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
@@ -50,7 +49,6 @@ class Wallet extends Component {
             {axios
             .get('/api/getAllCoupons')
             .then(res => {
-                console.log(res.data)
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
                 const household = res.data.filter(coupon => coupon.category_id ===2)
                 const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
@@ -70,7 +68,6 @@ class Wallet extends Component {
         axios
             .delete(`/api/deleteCoupon/${id}`)
             .then((res) => {
-                // console.log(res.data)
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
                 const household = res.data.filter(coupon => coupon.category_id === 2)
                 const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
@@ -90,7 +87,7 @@ class Wallet extends Component {
         axios
             .put(`/api/editCoupon/${id}`, {
                 product,
-                expiration_date
+                expiration_date,
             })
             .then(res => {
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
@@ -108,7 +105,6 @@ class Wallet extends Component {
             })
     }
     render() {
-        console.log(this.state)
         return(
             <div>
                 <nav>
@@ -121,6 +117,7 @@ class Wallet extends Component {
                         key={coupons.id}
                         id={coupons.id}
                         product={coupons.product}
+                        store={coupons.store}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
@@ -136,6 +133,7 @@ class Wallet extends Component {
                         key={coupons.id}
                         id={coupons.id}
                         product={coupons.product}
+                        store={coupons.store}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
@@ -151,6 +149,7 @@ class Wallet extends Component {
                         key={coupons.id}
                         id={coupons.id}
                         product={coupons.product}
+                        store={coupons.store}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
@@ -166,6 +165,7 @@ class Wallet extends Component {
                         key={coupons.id}
                         id={coupons.id}
                         product={coupons.product}
+                        store={coupons.store}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
@@ -181,6 +181,7 @@ class Wallet extends Component {
                         key={coupons.id}
                         id={coupons.id}
                         product={coupons.product}
+                        store={coupons.store}
                         expiration_date={coupons.expiration_date}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}

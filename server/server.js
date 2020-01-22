@@ -20,10 +20,13 @@ app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.delete('/auth/logout', authCtrl.logout)
 
+app.post('/api/addCouponImage', ctrl.addCouponImage)
 app.post('/api/addCoupon', ctrl.addCoupon)
 app.get('/api/getAllCoupons', ctrl.getAllCoupons)
 app.delete('/api/deleteCoupon/:id', ctrl.deleteCoupon)
 app.put('/api/editCoupon/:id', ctrl.editCoupon)
+
+app.get('/sign-s3', ctrl.signedRequest)
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
