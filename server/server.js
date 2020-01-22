@@ -27,6 +27,7 @@ app.delete('/api/deleteCoupon/:id', ctrl.deleteCoupon)
 app.put('/api/editCoupon/:id', ctrl.editCoupon)
 
 app.get('/sign-s3', ctrl.signedRequest)
+app.post('/addCouponImage', ctrl.addCouponImage)
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)

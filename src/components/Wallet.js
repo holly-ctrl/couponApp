@@ -119,6 +119,7 @@ class Wallet extends Component {
                         product={coupons.product}
                         store={coupons.store}
                         expiration_date={coupons.expiration_date}
+                        url={coupons.url}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
                         handleEditProductChange={this.handleEditProductChange}
@@ -135,6 +136,7 @@ class Wallet extends Component {
                         product={coupons.product}
                         store={coupons.store}
                         expiration_date={coupons.expiration_date}
+                        url={coupons.url}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
                         handleEditProductChange={this.handleEditProductChange}
@@ -151,6 +153,7 @@ class Wallet extends Component {
                         product={coupons.product}
                         store={coupons.store}
                         expiration_date={coupons.expiration_date}
+                        url={coupons.url}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
                         handleEditProductChange={this.handleEditProductChange}
@@ -167,6 +170,7 @@ class Wallet extends Component {
                         product={coupons.product}
                         store={coupons.store}
                         expiration_date={coupons.expiration_date}
+                        url={coupons.url}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
                         handleEditProductChange={this.handleEditProductChange}
@@ -183,6 +187,7 @@ class Wallet extends Component {
                         product={coupons.product}
                         store={coupons.store}
                         expiration_date={coupons.expiration_date}
+                        url={coupons.url}
                         deleteCoupon={this.deleteCoupon}
                         updateCoupon={this.updateCoupon}
                         handleEditProductChange={this.handleEditProductChange}

@@ -8,6 +8,7 @@ class CouponListItem extends Component {
         this.state = {
             product: '',
             expiration_date: '',
+            url: '',
             setEdit: false
         }
     }
@@ -16,6 +17,7 @@ class CouponListItem extends Component {
         this.setState({
             product: this.props.product,
             expiration_date: this.props.expiration_date,
+            url: this.props.url
         })
     }
 
@@ -44,6 +46,7 @@ class CouponListItem extends Component {
                 {!this.state.setEdit
                 ?
                 <div className='couponContainer'>
+                    <img src={this.state.url} />
                     <div>{this.state.product}</div>
                     <div>Expires on: {this.state.expiration_date}</div>
                     <button onClick={() => {this.editToggle()}} >Edit</button> <button onClick={() => this.props.deleteCoupon(this.props.id)}>Delete</button>

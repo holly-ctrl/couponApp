@@ -15,12 +15,19 @@ class Welcome extends Component {
             expirationDate: '',
             image: null,
             isUploading: false,
+            url: '',
             showPopup: false
         }
 
         this.getSignedRequest = this.getSignedRequest.bind(this)
         this.togglePopup = this.togglePopup.bind(this)
         this.onAddCouponClick = this.onAddCouponClick.bind(this)
+    }
+
+    onUrlChange(e) {
+        this.setState({
+            url: e.target.value
+        })
     }
 
     onProductChange(e) {
@@ -53,15 +60,15 @@ class Welcome extends Component {
     }
 
     togglePopup(e) {
-        e.preventDefault()
-        let image = null 
-        if (this.fileInput.current) {
-            image = this.fileInput.current.files[0] 
-        }
-        if (image && image.size > 1048576) {
-            window.alert('image too big, max 10Mb')
-            return
-        }
+        // e.preventDefault()
+        // let image = null 
+        // if (this.fileInput.current) {
+        //     image = this.fileInput.current.files[0] 
+        // }
+        // if (image && image.size > 1048576) {
+        //     window.alert('image too big, max 10Mb')
+        //     return
+        // }
         this.setState({
             showPopup: !this.state.showPopup
         })
@@ -86,8 +93,10 @@ class Welcome extends Component {
             }
           }).then( (response) => {
             const { signedRequest, url } = response.data 
-            // this.uploadFile(file, signedRequest, url)
-
+            this.uploadFile(file, signedRequest, url)
+            // this.setState({
+            //     url
+            // }) 
             console.log('signed request from aws:', signedRequest)
             console.log('url from aws:', url);
 
@@ -95,28 +104,57 @@ class Welcome extends Component {
             console.log(err)
           })
     }
+    uploadFile = (file, signedRequest, url) => {
+        const options = {
+          headers: {
+            'Content-Type': file.type,
+          },
+        };
+    
+        axios
+          .put(signedRequest, file, options)
+          .then(response => {
+            this.setState({ isUploading: false, url });
+            // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
+          })
+          .catch(err => {
+            this.setState({
+              isUploading: false,
+            });
+            if (err.response.status === 403) {
+              alert(
+                `Your request for a signed URL failed with a status 403. Double check the CORS configuration and bucket policy in the README. You also will want to double check your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in your .env and ensure that they are the same as the ones that you created in the IAM dashboard. You may need to generate new keys\n${
+                  err.stack
+                }`
+              );
+            } else {
+              alert(`ERROR: ${err.status}\n ${err.stack}`);
+            }
+          });
+      };
 
     onAddCouponClick(category) {
-        const imageData = new FormData()
-        console.log('this.state.image', this.state.image)
-        imageData.append('imageData', this.state.image)
-        for (const v of imageData.values()) {
-            console.log('value of imageData', v)
-        }
+        // const imageData = new FormData()
+        // console.log('this.state.image', this.state.image)
+        // imageData.append('imageData', this.state.image)
+        // for (const v of imageData.values()) {
+        //     console.log('value of imageData', v)
+        // }
 
-        axios
-            .post('/api/addCouponImage', imageData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        // axios
+        //     .post('/api/addCouponImage', imageData, {
+        //         headers: {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     })
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err))
         axios
             .post('/api/addCoupon', {
                 product: this.state.product,
                 expiration_date: this.state.expirationDate,
-                category_id: category
+                category_id: category,
+                url: this.state.url
             })
             .then(res => console.log(res))
             .catch(err => console.log(err))
@@ -130,8 +168,10 @@ class Welcome extends Component {
                 </nav>
                 <div>
                     <div className='form'>
+                        {/* <img src={this.state.url}/> */}
                         <Dropzone 
                             onDropAccepted={this.getSignedRequest}
+                            onChange={e => this.onUrlChange(e)}
                             // style={{
                             //     position: 'relative',
                             //     width: 200,

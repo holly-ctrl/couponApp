@@ -5,9 +5,10 @@ const {S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY} = process.env
 module.exports = {
     addCoupon: (req, res) => {
         const db= req.app.get('db')
-        const { product, expiration_date, category_id } = req.body
+        const { product, expiration_date, category_id, url } = req.body
+        console.log('weeeee',url)
 
-        db.add_coupon(product, expiration_date, category_id)
+        db.add_coupon([product, expiration_date, category_id, url])
             .then(result => {
                 res.status(200).send(result)
             })
@@ -15,11 +16,6 @@ module.exports = {
     addCouponImage: (req, res) => {
         console.log('req.body', req.body)
         
-
-        // const { imageData } = req.body
-        // for (const v of imageData.values()) {
-        //     console.log('value of imageData', v)
-        // }
         res.status(200).send(':ok res from addCouponImage')
     },
     getAllCoupons: (req, res) => {
@@ -46,7 +42,7 @@ module.exports = {
             res.status(200).send(data))
     },
     signedRequest: (req, res) => {
-
+        console.log(req.query)
         aws.config = {
           region: 'us-west-1',
           accessKeyId: AWS_ACCESS_KEY_ID,
@@ -64,6 +60,7 @@ module.exports = {
         };
       
         s3.getSignedUrl('putObject', s3Params, (err, data) => {
+            console.log(err, data)
           if(err){
             console.log(err);
             return res.end();
