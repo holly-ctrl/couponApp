@@ -172,20 +172,20 @@ class Welcome extends Component {
                         <Dropzone 
                             onDropAccepted={this.getSignedRequest}
                             onChange={e => this.onUrlChange(e)}
-                            // style={{
-                            //     position: 'relative',
-                            //     width: 200,
-                            //     height: 200,
-                            //     borderWidth: 7,
-                            //     marginTop: 100,
-                            //     borderColor: 'rgb(102, 102, 102)',
-                            //     borderStyle: 'dashed',
-                            //     borderRadius: 5,
-                            //     display: 'flex',
-                            //     justifyContent: 'center',
-                            //     alignItems: 'center',
-                            //     fontSize: 28,
-                            // }}
+                            style={{
+                                position: 'relative',
+                                width: 200,
+                                height: 200,
+                                borderWidth: 7,
+                                marginTop: 100,
+                                borderColor: 'rgb(102, 102, 102)',
+                                borderStyle: 'dashed',
+                                borderRadius: 5,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                fontSize: 28,
+                            }}
                             accept='image/*'
                             multiple={false} 
                         > 
