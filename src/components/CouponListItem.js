@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './CouponListItem.css'
+import CouponPop from './CouponPop'
 
 class CouponListItem extends Component {
     constructor(props) {
@@ -9,8 +10,11 @@ class CouponListItem extends Component {
             product: '',
             expiration_date: '',
             url: '',
-            setEdit: false
+            setEdit: false,
+            showCouponPop: false
         }
+
+        this.toggleCouponPop = this.toggleCouponPop.bind(this)
     }
 
     componentDidMount() {
@@ -38,6 +42,13 @@ class CouponListItem extends Component {
             expiration_date: e.target.value
         })
     }
+    
+    toggleCouponPop(e) {
+        this.setState({
+            showCouponPop: !this.state.showCouponPop
+        })
+    }
+
 
     render() {
         const{product, expiration_date} = this.state
@@ -46,8 +57,8 @@ class CouponListItem extends Component {
                 {!this.state.setEdit
                 ?
                 <div className='couponContainer'>
-                    <img src={this.state.url} />
-                    <div>{this.state.product}</div>
+                    <img src={this.state.url} onClick={e => this.toggleCouponPop(e)}/>
+                    <h2>{this.state.product}</h2>
                     <div>Expires on: {this.state.expiration_date}</div>
                     <button onClick={() => {this.editToggle()}} >Edit</button> <button onClick={() => this.props.deleteCoupon(this.props.id)}>Delete</button>
                 </div>
@@ -61,6 +72,7 @@ class CouponListItem extends Component {
                     }}>Save</button>
                 </div>
                 }
+                {this.state.showCouponPop && <CouponPop closePopup={this.toggleCouponPop} url={this.state.url}/>}
             </div>
         )
     }

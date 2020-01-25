@@ -13,17 +13,19 @@ class Wallet extends Component {
             household: [],
             pharmacy: [],
             personal: [],
-            pets: []
+            pets: [],
         }
 
         this.deleteCoupon = this.deleteCoupon.bind(this)
         this.updateCoupon = this.updateCoupon.bind(this)
+        
     }
 
     componentDidMount() {
         axios
             .get('/api/getAllCoupons')
             .then(res => {
+                console.log(res.data)
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
                 const household = res.data.filter(coupon => coupon.category_id ===2)
                 const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
@@ -49,6 +51,7 @@ class Wallet extends Component {
             {axios
             .get('/api/getAllCoupons')
             .then(res => {
+                console.log(res.data)
                 const grocery = res.data.filter(coupon => coupon.category_id === 1)
                 const household = res.data.filter(coupon => coupon.category_id ===2)
                 const pharmacy = res.data.filter(coupon => coupon.category_id === 3)
@@ -104,6 +107,7 @@ class Wallet extends Component {
                 })
             })
     }
+
     render() {
         return(
             <div>

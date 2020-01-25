@@ -69,6 +69,7 @@ class Landing extends Component {
                     </div>
                 </header>
                 <div className='signUp'>
+                    <h2>Create an account!!</h2>
                     <input placeholder='name' onChange={e => this.setState({nameInput: e.target.value})} /> 
                     <input placeholder='email' onChange={e => this.setState({ emailInput: e.target.value })} /> 
                     <input placeholder='password' type="password" onChange={e => this.setState({ passwordInput: e.target.value })} /> 

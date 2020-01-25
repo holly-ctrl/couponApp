@@ -60,15 +60,6 @@ class Welcome extends Component {
     }
 
     togglePopup(e) {
-        // e.preventDefault()
-        // let image = null 
-        // if (this.fileInput.current) {
-        //     image = this.fileInput.current.files[0] 
-        // }
-        // if (image && image.size > 1048576) {
-        //     window.alert('image too big, max 10Mb')
-        //     return
-        // }
         this.setState({
             showPopup: !this.state.showPopup
         })
@@ -134,21 +125,6 @@ class Welcome extends Component {
       };
 
     onAddCouponClick(category) {
-        // const imageData = new FormData()
-        // console.log('this.state.image', this.state.image)
-        // imageData.append('imageData', this.state.image)
-        // for (const v of imageData.values()) {
-        //     console.log('value of imageData', v)
-        // }
-
-        // axios
-        //     .post('/api/addCouponImage', imageData, {
-        //         headers: {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     })
-        //     .then(res => console.log(res))
-        //     .catch(err => console.log(err))
         axios
             .post('/api/addCoupon', {
                 product: this.state.product,
@@ -168,7 +144,6 @@ class Welcome extends Component {
                 </nav>
                 <div>
                     <div className='form'>
-                        {/* <img src={this.state.url}/> */}
                         <Dropzone 
                             onDropAccepted={this.getSignedRequest}
                             onChange={e => this.onUrlChange(e)}
