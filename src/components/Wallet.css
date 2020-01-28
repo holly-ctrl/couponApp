@@ -11,3 +11,18 @@ h1 {
     margin-left: 30px;
 }
 
+@media (max-width: 375px) {
+    .cat {
+        display: flex;
+    margin-top: 50px;
+    margin-left: 10px;
+    box-shadow: 5px 5px 15px 5px lightgrey;
+    height: 600px;
+    width: 340px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+    }
+}
