@@ -12,6 +12,12 @@
 
 @media (max-width: 375px) {
     .couponContainer {
-        
+        width: auto;
+        height: auto;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
     }
 }
