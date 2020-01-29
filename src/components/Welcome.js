@@ -144,6 +144,7 @@ class Welcome extends Component {
                 </nav>
                 <div>
                     <div className='form'>
+                        <h2>Add a new coupon:</h2>
                         <Dropzone 
                             onDropAccepted={this.getSignedRequest}
                             onChange={e => this.onUrlChange(e)}

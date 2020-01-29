@@ -29,6 +29,8 @@ app.put('/api/editCoupon/:id', ctrl.editCoupon)
 app.get('/sign-s3', ctrl.signedRequest)
 app.post('/addCouponImage', ctrl.addCouponImage)
 
+app.post('/api/payment', ctrl.pay)
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
     app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`))

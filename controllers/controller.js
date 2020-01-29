@@ -1,4 +1,5 @@
-const  FormData = require('form-data')
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
+// const  FormData = require('form-data')
 const aws = require('aws-sdk')
 const {S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY} = process.env
 
@@ -72,5 +73,26 @@ module.exports = {
       
           return res.send(returnData)
         })
-      }
+      },
+      pay: (req, res) => {
+        const db = req.app.get('db')
+        const {token: {id}, amount} = req.body
+        stripe.charges.create(
+            {
+                amount: amount,
+                currency: 'usd',
+                source: id,
+                description: 'Test Charge'
+            },
+            (err, charge) => {
+                if(err) {
+                    console.log(err)
+                    return res.status(500).send(err)
+                } else {
+                    console.log('Successful payment', charge)
+                    return res.status(200).send(charge)
+                }
+            }
+        )
+    }
 }
