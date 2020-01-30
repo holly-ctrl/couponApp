@@ -1,4 +1,4 @@
-.couponContainer {
+/* .couponContainer {
     box-shadow: 5px 5px 15px 5px lightgrey;
     padding: 20px;
     margin: 10px;
@@ -8,7 +8,7 @@
     box-shadow: 5px 5px 15px 5px lightgrey;
     padding: 20px;
     margin: 10px;
-}
+} */
 
 @media (max-width: 375px) {
     .couponContainer {

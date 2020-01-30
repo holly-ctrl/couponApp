@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {setUser} from '../ducks/reducer'
 import './Landing.css'
 import StripeCheckout from 'react-stripe-checkout'
+import styled from 'styled-components'
 
 class Landing extends Component {
       constructor() {
@@ -79,22 +80,23 @@ class Landing extends Component {
       }
 
       render() {
+          console.log(this.props)
           return (
               <div>
                 <header>
-                    <h1 className='logo'>couponApp</h1>
+                    <LandingH1 className='logo'>couponApp</LandingH1>
                     <div className='signIn'>
-                        <input placeholder='email' value={this.state.emailInput} onChange={e => this.handleEmailInput(e.target.value)} /> 
-                        <input placeholder='password' type="password" value={this.state.passwordInput} onChange={e => this.handlePasswordInput(e.target.value)} /> 
-                        <button className='button' onClick={() => this.login()}>Login</button>
+                        <LandingInput placeholder='email' value={this.state.emailInput} onChange={e => this.handleEmailInput(e.target.value)} /> 
+                        <LandingInput placeholder='password' type="password" value={this.state.passwordInput} onChange={e => this.handlePasswordInput(e.target.value)} /> 
+                        <LandingButtons className='button' onClick={() => this.login()}>Login</LandingButtons>
                     </div>
                 </header>
                 <div className='signUp'>
-                    <h2>Create an account!!</h2>
-                    <input placeholder='name' onChange={e => this.setState({nameInput: e.target.value})} /> 
-                    <input placeholder='email' onChange={e => this.setState({ emailInput: e.target.value })} /> 
-                    <input placeholder='password' type="password" onChange={e => this.setState({ passwordInput: e.target.value })} /> 
-                    <button className='button' onClick={() => this.signup()}>Sign Up</button>
+                    <LandingH1>Create an account!!</LandingH1>
+                    <LandingInput placeholder='name' onChange={e => this.setState({nameInput: e.target.value})} /> 
+                    <LandingInput placeholder='email' onChange={e => this.setState({ emailInput: e.target.value })} /> 
+                    <LandingInput placeholder='password' type="password" onChange={e => this.setState({ passwordInput: e.target.value })} /> 
+                    <LandingButtons className='button' onClick={() => this.signup()}>Sign Up</LandingButtons>
                 </div>
                 <div>
                     <StripeCheckout
@@ -110,10 +112,10 @@ class Landing extends Component {
                         billingAddress={false}
                         zipCode={false}
                     >
-                    <button>Donate</button>
+                    <LandingButtons>Donate</LandingButtons>
                     </StripeCheckout>
                         $
-                        <input 
+                        <LandingInput 
                         value={this.state.amount}
                         type='number'
                         onChange={ e => this.setState({amount: +e.target.value})}/>
@@ -123,4 +125,31 @@ class Landing extends Component {
       }
 }
 
-export default withRouter(connect(null, {setUser}) (Landing))
+function mapState(state) {
+    return state 
+}
+
+export default withRouter(connect(mapState, {setUser}) (Landing))
+
+const LandingButtons = styled.button`
+      width: 80px;
+      height: 49px;
+      margin-top: 8px;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      border: 2px solid #4CAF50;
+`
+
+const LandingInput = styled.input`
+    width: 251px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #4CAF50;
+`
+
+const LandingH1 = styled.h2`
+    font-size: 2.5rem
+    color: #4CAF50
+    font-family: 'Bebas Neue'
+`
+

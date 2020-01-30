@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import Popup from './Popup'
+import styled from 'styled-components'
 import './Welcome.css'
 
 class Welcome extends Component {
@@ -137,12 +138,14 @@ class Welcome extends Component {
     }
 
     render() {
+        // console.log(this.props)
         return (
             <div className='container'>
                 <nav>
                     <Link to='/wallet'><img className='walletImg' src='http://icons.iconarchive.com/icons/iconsmind/outline/512/Wallet-2-icon.png'/></Link>
                 </nav>
                 <div>
+                    <Title>Welcome, {this.props.user.name}!!!</Title>
                     <div className='form'>
                         <h2>Add a new coupon:</h2>
                         <Dropzone 
@@ -174,16 +177,45 @@ class Welcome extends Component {
                                     </div>
                             )}
                         </Dropzone> 
-                        Product Name:<input value={this.product} onChange={e => this.onProductChange(e)}  ></input>
-                        Expiration Date: <input type='date' value={this.expiration_date} onChange={e => this.onExpirationDateChange(e)} placeholder='Expiration Date'></input>
-                        <button onClick={e => this.togglePopup(e)} className='addButton'>Add</button>
+                        Product Name:<Input value={this.product} onChange={e => this.onProductChange(e)}  ></Input>
+                        Expiration Date: <Input type='date' value={this.expiration_date} onChange={e => this.onExpirationDateChange(e)} placeholder='Expiration Date'></Input>
+                        <Button onClick={e => this.togglePopup(e)} className='addButton'>Add</Button>
                     </div>
                 </div>
                 {this.state.showPopup && <Popup closePopup={this.togglePopup} onAddCouponClick={this.onAddCouponClick} />}
-                <button className='logoutButton' onClick={() => this.logout()}>Logout</button>
+                <Button className='logoutButton' onClick={() => this.logout()}>Logout</Button>
             </div>
         )
     }
 }
 
-export default Welcome 
+function mapState(state) {
+    return state 
+}
+
+export default (connect(mapState) (Welcome))
+
+
+
+const Title = styled.h1`
+  font-size: 3.5em;
+  margin-right: 150px;
+  color: #4CAF50;
+  font-family: 'Zhi Mang Xing', cursive;
+`
+
+const Button = styled.button`
+width: 80px;
+height: 49px;
+margin-top: 8px;
+background-color: white;
+color: black;
+border: 2px solid #4CAF50;
+`
+
+const Input = styled.input`
+    width: 250px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box
+`

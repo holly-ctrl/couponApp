@@ -24,7 +24,7 @@ module.exports = {
         if (!user[0]) return res.status(200).send({message: 'email not found'})
         const result = bcrypt.compareSync(password, user[0].hash_value)
         if (result === true) {
-            req.session.user = {id: user[0].id, email: user[0].email}
+            req.session.user = {id: user[0].id, email: user[0].email, name: user[0].name}
             return res.status(200).send({message: 'logged in', userData: req.session.user})
         } else {
             res.status(200).send({message: 'password incorrect'})

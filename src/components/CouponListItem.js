@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './CouponListItem.css'
 import CouponPop from './CouponPop'
+import styled from 'styled-components'
 
 class CouponListItem extends Component {
     constructor(props) {
@@ -56,21 +57,21 @@ class CouponListItem extends Component {
             <div>
                 {!this.state.setEdit
                 ?
-                <div className='couponContainer'>
+                <CoupDiv className='couponContainer'>
                     <img src={this.state.url} onClick={e => this.toggleCouponPop(e)}/>
                     <h2>{this.state.product}</h2>
                     <div>Expires on: {this.state.expiration_date}</div>
-                    <button onClick={() => {this.editToggle()}} >Edit</button> <button onClick={() => this.props.deleteCoupon(this.props.id)}>Delete</button>
-                </div>
+                    <EditButton onClick={() => {this.editToggle()}} >Edit</EditButton> <EditButton onClick={() => this.props.deleteCoupon(this.props.id)}>Delete</EditButton>
+                </CoupDiv>
                 :
-                <div className='editCoupon'>
+                <EditCoup className='editCoupon'>
                     product: <input value={this.state.product} onChange={e => this.handleEditProductChange(e)}/>
                     Expires on: <input type='date' value={this.state.expiration_date} onChange={e => this.handleEditExpirationDateChange(e)}/> 
                     <button onClick={() => {
                         this.props.updateCoupon(this.props.id, product, expiration_date)
                         this.editToggle()
                     }}>Save</button>
-                </div>
+                </EditCoup>
                 }
                 {this.state.showCouponPop && <CouponPop closePopup={this.toggleCouponPop} url={this.state.url}/>}
             </div>
@@ -79,3 +80,26 @@ class CouponListItem extends Component {
 }
 
 export default CouponListItem
+
+const CoupDiv = styled.div`
+box-shadow: 5px 5px 15px 5px lightgrey;
+padding: 20px;
+margin: 10px;
+`
+
+const EditButton = styled.button`
+background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+`
+
+const EditCoup = styled.div`
+box-shadow: 5px 5px 15px 5px lightgrey;
+padding: 20px;
+margin: 10px;
+`

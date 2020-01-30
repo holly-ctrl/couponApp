@@ -1,4 +1,4 @@
-.cat {
+/* .cat {
     display: flex;
     margin-top: 50px;
     margin-left: 20vw;
@@ -9,7 +9,7 @@
 
 h1 {
     margin-left: 30px;
-}
+} */
 
 @media (max-width: 375px) {
     .cat {

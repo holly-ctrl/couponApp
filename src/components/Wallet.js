@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import './Wallet.css'
 import axios from 'axios'
 import CouponListItem from './CouponListItem'
+import styled from 'styled-components'
 
 class Wallet extends Component {
     constructor() {
@@ -114,8 +115,8 @@ class Wallet extends Component {
                 <nav>
                     <Link to='/welcome'><img className='addImg' src='https://image.flaticon.com/icons/png/512/32/32339.png' /></Link>
                 </nav>
-                <div className='cat'>
-                    <h1>Grocery</h1>
+                <Div className='cat'>
+                    <CatTitle>Grocery</CatTitle>
                     {this.state.grocery.map((coupons) => (
                         <CouponListItem
                         key={coupons.id}
@@ -130,9 +131,9 @@ class Wallet extends Component {
                         handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
-                </div>
-                <div className='cat'>
-                    <h1>Household</h1>
+                </Div>
+                <Div className='cat'>
+                    <CatTitle>Household</CatTitle>
                     {this.state.household.map((coupons) => (
                         <CouponListItem
                         key={coupons.id}
@@ -147,9 +148,9 @@ class Wallet extends Component {
                         handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
-                </div>
-                <div className='cat'>
-                    <h1>Pharmacy</h1>
+                </Div>
+                <Div className='cat'>
+                    <CatTitle>Pharmacy</CatTitle>
                     {this.state.pharmacy.map((coupons) => (
                         <CouponListItem
                         key={coupons.id}
@@ -164,9 +165,9 @@ class Wallet extends Component {
                         handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
-                </div>
-                <div className='cat'>
-                    <h1>Personal</h1>
+                </Div>
+                <Div className='cat'>
+                    <CatTitle>Personal</CatTitle>
                     {this.state.personal.map((coupons) => (
                         <CouponListItem
                         key={coupons.id}
@@ -181,9 +182,9 @@ class Wallet extends Component {
                         handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
-                </div>
-                <div className='cat'>
-                    <h1>Pets</h1>
+                </Div>
+                <Div className='cat'>
+                    <CatTitle>Pets</CatTitle>
                     {this.state.pets.map((coupons) => (
                         <CouponListItem
                         key={coupons.id}
@@ -198,10 +199,26 @@ class Wallet extends Component {
                         handleEditExpirationDateChange={this.handleEditExpirationDateChange}
                         />
                     ))}
-                </div>
+                </Div>
             </div>
         )
     }
 }
 
 export default Wallet 
+
+const CatTitle = styled.h1`
+    font-size: 2.5
+    color: blue;
+    font-family: 'Bangers', cursive;
+    margin-left: 20px;
+`
+
+const Div = styled.div`
+display: flex;
+margin-top: 50px;
+margin-left: 20vw;
+box-shadow: 5px 5px 15px 5px lightgrey;
+height: 600px;
+width: 1000px;
+`
